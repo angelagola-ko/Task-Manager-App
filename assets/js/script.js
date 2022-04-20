@@ -54,6 +54,11 @@ var createTaskE1 = function(taskDataObj) {
    // taskInfoE1.innerHTML = "<h3 class='task-name'>" + taskNameInput + "</h3><span class='task-type'>" + taskTypeInput + "</span>";
     taskInfoE1.innerHTML = "<h3 class='task-name'>" + taskDataObj.name + "</h3><span class='task-type'>" + taskDataObj.type + "</span>";
     listItemE1.appendChild(taskInfoE1);
+
+    var taskActionsE1 = createTaskActions(taskIdCounter);//Where is taskIdCounter coming from?
+    listItemE1.appendChild(taskActionsE1);
+
+
     //listItemE1.textContent = taskNameInput;
     tasksToDoE1.appendChild(listItemE1);
 
@@ -80,7 +85,7 @@ deleteButtonE1.className = "btn delete-btn";
 deleteButtonE1.setAttribute("data-task-id", taskId);
 
 actionContainerE1.appendChild(deleteButtonE1);
-
+//add empty select element to div container
 var statusSelectE1 = document.createElement("select");
 statusSelectE1.className = "select-status";
 statusSelectE1.setAttribute("name", "status-change");
@@ -88,6 +93,17 @@ statusSelectE1.setAttribute("data-task-id", taskId);
 
 actionContainerE1.appendChild(statusSelectE1);
 
+var statusChoices = ["To-Do", "In-progress", "Completed"];
+
+for (var i=0; i<statusChoices.length; i++) {
+    //create option element
+    var statusOptionE1 = document.createElement("option");
+    statusOptionE1.textContent = statusChoices[i];
+    statusOptionE1.setAttribute("value", statusChoices[i]);
+
+    //append to select
+    statusSelectE1.appendChild(statusOptionE1);
+}
 return actionContainerE1;
 };
 
