@@ -116,15 +116,25 @@ var taskButtonHandler = function(event) {
         var taskId = event.target.getAttribute("data-task-id");
         console.log(taskId);
     }
+    
+    if (event.target.matches(".delete-btn")) {
+        var taskId = event.target.getAttribute("data-test-id");
+        deleteTask(taskId);
+    };
+    
 };
 
 var deleteTask = function(taskId) {
-    console.log(taskId);
-};
+    var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
+    console.log(taskSelected);
 
-if (event.target.matches(".delete-btn")) {
-    var taskId = event.target.getAttribute("data-test-id");
-};
+
+    taskSelected.remove();
+//    console.log(taskSelected);
+}; 
+
+
+
 
 
 pageContentE1.addEventListener("click", taskButtonHandler);
